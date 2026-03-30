@@ -14,7 +14,7 @@ This project explores how outdoor dining locations cluster along specific types 
 
 ### Method
 - Spatial join (points to street segments)  
-- Clustering (K-means or DBSCAN)  
+- Clustering (K-means or DBSCAN)
 
 ---
 
@@ -29,7 +29,7 @@ This project investigates how public complaints reflect different types of frict
 
 ### Method
 - Filtering outdoor dining complaints  
-- Clustering complaint categories  
+- Clustering (K-means or hierarchical clustering)
 
 ---
 
@@ -46,10 +46,9 @@ This project analyzes how access to subway stations and Citi Bike docks relates 
 ### Method
 - Buffer analysis (walkable distance)  
 - Spatial overlay  
+- Regression analysis (relationship between accessibility and dining presence)
 
 ---
-
-## Data Sources
 
 ## Data Sources
 
