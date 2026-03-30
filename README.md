@@ -53,20 +53,20 @@ This project analyzes how access to subway stations and Citi Bike docks relates 
 
 ## Data Sources
 
-- Dining Out NYC Locations (NYC Open Data)  
-  https://data.cityofnewyork.us/Transportation/Dining-Out-NYC-Locations/fpeh-f7ci  
+- Dining Out NYC Locations (NYC Open Data)
+https://data.cityofnewyork.us/Transportation/Dining-Out-NYC-Locations/fpeh-f7ci  
 
-- NYC 311 Service Requests (2020–Present)  
-  https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9  
+- NYC 311 Service Requests (2020–Present)
+https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9  
 
 - NYC Street Network
-  https://www.nyc.gov/content/planning/pages/resources/datasets/lion  
+https://www.nyc.gov/content/planning/pages/resources/datasets/lion  
 
 - MTA Subway Stations
-  https://data.ny.gov/Transportation/MTA-General-Transit-Feed-Specification-GTFS-Static/fgm6-ccue
+https://data.ny.gov/Transportation/MTA-General-Transit-Feed-Specification-GTFS-Static/fgm6-ccue
 
-- Citi Bike Station Data  
-  https://citibikenyc.com/system-data  
+- Citi Bike Station Data
+https://citibikenyc.com/system-data  
 
-- Dining Out NYC Program (rules, fees, and guidelines)  
-  https://www.diningoutnyc.info/  
+- Dining Out NYC Program (rules, fees, and guidelines)
+https://www.diningoutnyc.info/  
