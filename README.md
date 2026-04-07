@@ -36,17 +36,21 @@ This project investigates how public complaints reflect different types of frict
 ## Option 3: Transit Accessibility and Outdoor Dining
 
 ### Idea
-This project analyzes how access to subway stations and Citi Bike docks relates to outdoor dining presence.
+TThis project predicts which locations in New York City are likely to support outdoor dining based on spatial conditions such as transit accessibility, complaint intensity, and surrounding infrastructure.
 
 ### Data
-- Subway stations (GTFS)  
-- Citi Bike stations  
-- Dining locations  
+- Outdoor dining locations (historic + current)
+- Subway stations
+- 311 complaints
 
 ### Method
-- Buffer analysis (walkable distance)  
-- Spatial overlay  
-- Regression analysis (relationship between accessibility and dining presence)
+- Feature engineering (distance to transit, complaint density)
+- Binary classification (survival vs non-survival)
+- Logistic regression / Random Forest
+- Feature importance analysis
+
+### Goal
+To identify which spatial factors most strongly influence whether outdoor dining can persist.
 
 ---
 
@@ -67,10 +71,6 @@ This project analyzes how access to subway stations and Citi Bike docks relates 
 - MTA Subway Stations
 
   https://data.ny.gov/Transportation/MTA-General-Transit-Feed-Specification-GTFS-Static/fgm6-ccue
-
-- Citi Bike Station Data
-
-  https://citibikenyc.com/system-data  
 
 - Dining Out NYC Program (rules, fees, and guidelines)
 
