@@ -36,7 +36,7 @@ This project investigates how public complaints reflect different types of frict
 ## Option 3: Transit Accessibility and Outdoor Dining
 
 ### Idea
-TThis project predicts which locations in New York City are likely to support outdoor dining based on spatial conditions such as transit accessibility, complaint intensity, and surrounding infrastructure.
+This project predicts which locations in New York City are likely to support outdoor dining based on spatial conditions such as transit accessibility, complaint intensity, and surrounding infrastructure.
 
 ### Data
 - Outdoor dining locations (historic + current)
