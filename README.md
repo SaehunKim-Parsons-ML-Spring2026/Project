@@ -75,3 +75,132 @@ To identify which spatial factors most strongly influence whether outdoor dining
 - Dining Out NYC Program (rules, fees, and guidelines)
 
   https://www.diningoutnyc.info/  
+
+
+## Milestone 02: Data Preparation & Exploration
+
+### Project Focus
+
+From the initial three directions, the project proceeds with:
+
+👉 **Option 3: Transit Accessibility and Outdoor Dining**
+
+The focus shifts from exploring multiple ideas to a single question:
+
+> What spatial conditions are associated with where outdoor dining remains?
+
+This stage does not aim to build a predictive model yet.  
+Instead, it prepares and evaluates the data to determine whether meaningful patterns exist.
+
+---
+
+## Dataset Construction
+
+The dataset combines historic and current outdoor dining locations in Manhattan.
+
+### Sources
+
+- Historic outdoor dining applications (NYC Open Data)  
+- Current licensed locations (Dining Out NYC)  
+- MTA subway stations  
+- NYC street network (LION)  
+- NYC 311 complaints (exploratory use only)
+
+---
+
+### Dataset Summary
+
+| | Count |
+|---|---|
+| Historic locations (survived=0) | 4,659 |
+| Current locations (survived=1) | 318 |
+| Total | 4,977 |
+| Class imbalance | 1:14 |
+
+---
+
+### Features
+
+| Feature | Type | Description |
+|--------|------|-------------|
+| `dist_subway_m` | continuous | Distance to nearest subway station |
+| `is_near_transit` | binary | Within 400m of subway |
+| `is_corridor` | binary | Located on key corridor streets |
+| `streetwidth` | continuous | Proxy for physical street capacity |
+
+---
+
+### Target
+
+- `survived` (binary)  
+  - 1: currently licensed  
+  - 0: historic (no longer active)
+
+---
+
+## Data Processing
+
+- Filtered to Manhattan only  
+- Removed duplicate locations (coordinate-based)  
+- Normalized street names across datasets  
+- Computed nearest subway distance using spatial index (KDTree)  
+- Created binary features (transit access, corridor membership)  
+- Matched street width using street network data  
+
+---
+
+## Exploratory Analysis
+
+Exploratory analysis was conducted to evaluate differences between surviving and non-surviving locations.
+
+### Key observations
+
+- **Transit access**
+  - Surviving locations tend to be closer to subway stations  
+
+- **Street corridors**
+  - Outdoor dining clusters along a small number of streets  
+
+- **Street width**
+  - Wider streets are more frequently associated with surviving locations  
+
+These patterns suggest that survival is associated with a combination of:
+
+- access  
+- street structure  
+- physical capacity  
+
+---
+
+## PCA (Feature Space Exploration)
+
+Principal Component Analysis was used to explore the structure of the feature space.
+
+- PC1 is dominated by transit-related features  
+- PC2 reflects corridor membership  
+
+This indicates that different spatial factors contribute along different dimensions.
+
+---
+
+## Limitations
+
+- **Class imbalance (1:14)**  
+  Far more historic than current locations  
+
+- **Complaint data unavailable for historic dataset**  
+  Used only in exploratory analysis  
+
+- **Street width coverage (~52%)**  
+  Due to spatial matching between point data and street segments  
+
+- **Correlation ≠ causation**  
+  Findings are associative, not causal  
+
+---
+
+## Next Steps (Milestone 03)
+
+- Train classification models:
+  - Logistic Regression  
+  - Random Forest  
