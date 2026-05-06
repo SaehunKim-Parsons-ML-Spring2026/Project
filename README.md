@@ -203,4 +203,130 @@ This indicates that different spatial factors contribute along different dimensi
 
 - Train classification models:
   - Logistic Regression  
-  - Random Forest  
+  - Random Forest
+ 
+## Milestone 04: Final Classification Model
+
+### Project Focus
+
+For Milestone 04, I built the final classification experiment for the outdoor dining project.
+
+The goal was to test whether outdoor dining locations that remained active could be distinguished from locations that disappeared.
+
+This model does not explain why each restaurant stayed or disappeared. Instead, it tests whether the two groups are partly classifiable using measurable local and spatial features.
+
+### Research Question
+
+Can a Random Forest classifier distinguish remained outdoor dining locations from disappeared outdoor dining locations?
+
+### Target Variable
+
+The target variable is `survived`.
+
+`survived = 1` means the location is still active in the current Dining Out NYC dataset.
+
+`survived = 0` means the location appeared in the historic emergency outdoor dining dataset but is no longer active.
+
+### Final Dataset
+
+The final dataset contains Manhattan outdoor dining locations from both the historic emergency program and the current Dining Out NYC program.
+
+Historic locations: 4,659
+
+Current locations: 318
+
+Total locations: 4,977
+
+Class imbalance: approximately 1:14
+
+### Features Used
+
+Local context features:
+
+`dist_subway_m`
+
+`is_near_transit`
+
+`streetwidth`
+
+`streetwidth_missing`
+
+Spatial repetition features:
+
+`is_corridor`
+
+`same_street_nearby_count_1000ft`
+
+`nearby_outdoor_dining_count_300ft`
+
+### Feature Engineering
+
+I created a local same street repetition feature called `same_street_nearby_count_1000ft`.
+
+This counts nearby outdoor dining locations within 1000 feet that share the same street name.
+
+I used this instead of a simple street count because long avenues can stretch across Manhattan. This keeps the feature local instead of treating an entire avenue as one pattern.
+
+I also used `nearby_outdoor_dining_count_300ft` to measure nearby outdoor dining density.
+
+These features are not causal. They test whether nearby spatial repetition helps classify remained versus disappeared locations.
+
+### Models Tested
+
+I tested four models:
+
+Dummy baseline
+
+Random Forest using local context features
+
+Random Forest using spatial repetition features
+
+Random Forest using combined features
+
+The dummy baseline was used because the dataset is highly imbalanced. It shows why accuracy alone is not enough for this project.
+
+### Final Result
+
+The combined Random Forest model performed best.
+
+Accuracy: 0.807
+
+Balanced accuracy: 0.722
+
+Precision for survived class: 0.192
+
+Recall for survived class: 0.625
+
+F1 score for survived class: 0.294
+
+The model found about 63% of the remained locations in the test set, but it also made many false positive predictions.
+
+### Interpretation
+
+The strongest signal came from `same_street_nearby_count_1000ft`.
+
+This means nearby repetition on the same street helped the model separate remained and disappeared locations.
+
+This does not mean that same street repetition caused outdoor dining to remain.
+
+The result is limited but useful: remained locations are partly distinguishable through local spatial repetition.
+
+### Limitations
+
+This is an exploratory classification model, not a causal model.
+
+The model does not include many real factors that may affect outdoor dining decisions, such as permit cost, storage, seasonal decisions, enforcement, restaurant revenue, ownership decisions, or exact sidewalk setup constraints.
+
+The 1000 foot threshold is a design choice. A future version could test multiple distances, such as 500 feet, 1000 feet, and 1500 feet.
+
+Street width was only matched for about 52.5% of locations, so I used imputation and a missingness indicator.
+
+The model also produced many false positives, so it should not be used to predict individual restaurant outcomes.
+
+### Conclusion
+
+The final model does not explain why specific restaurants stayed.
+
+But it shows that remained and disappeared locations are partly distinguishable.
+
+The ML result supports the larger project finding: outdoor dining did not remain evenly across Manhattan. What remains has a measurable street level pattern.
